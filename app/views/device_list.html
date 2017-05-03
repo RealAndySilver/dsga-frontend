@@ -1,0 +1,27 @@
+<div class="device-list-header">
+	<div class="float-left" style="font-size:30px;"><b>Senders List</b> <span class="badge badge-important">{{device_list.length}}</span></div>
+	<button type="button" class="btn btn-info add-button" ng-click="new_device()"><b>Add Sender +</b></button>
+</div>
+<div>
+	<div ng-repeat="(app_name, devices) in filtered_devices" ng-if="devices.length>0">
+		<div style="font-size:30px; margin-bottom: 20px;"><b>{{app_name}}</b> <span class="badge badge-important">{{devices.length}}</span> </div>
+		<li class="no-list-style tall-list" ng-repeat="device in devices">
+				<span class="label label-danger type-tag">{{device.var_list}}</span>
+				<div class="left-container-for-list">
+					<div class="device-title"><b> <a href="#/update_device/{{device.id}}">{{device.device_tag}}</a></b></div>
+					
+					<h3>
+					<span class="label label-info">{{device.data.settings['Points X Req']}}</span>	
+					<span class="label label-primary">{{device.update_rate}}</span> 
+					</h3>
+				</div>
+				<div class="center-left-container-for-list">
+					<span class="badge">Sender Address : {{device.device_address}}</span>
+					<span class="badge">Network ID : {{device.network_id}}</span>
+					<span class="badge">Var List : {{device.var_list}}</span>
+					<span class="badge">Target : {{device.data.override_global_settings ? device.data.settings.endpoint : 'Global Endpoint'}}</span>
+				</div>
+				<toggle class="toggle" ng-model="device.active" ng-change="changed(device)" on="On" off="Off" onstyle="btn-info"></toggle>
+		</li>
+	</div>
+</div>

@@ -1,0 +1,113 @@
+<span ng-init="init()">
+	<div class="form-group">
+	  <h2> <b>Master Switch</b> </h2>
+	  <toggle class="toggle float-left" ng-model="settings.active" ng-change="toggleSwitch()" on="On" off="Off" onstyle="btn-info"></toggle>
+	</div>
+	<!--<div style="clear:both; margin-bottom:30px;"></div>
+	<div class="device-list-header">
+		<div class="float-left" style="font-size:30px;"><b>Settings</b></div>
+	</div>
+	<div class="small-input float-left margin-bottom">
+	  <label for="OV1_SS">OV1_SS:</label>
+	  <input type="number" class="form-control" id="OV1_SS" ng-model="settings.data.settings.OV1_SS">
+	</div>
+	<div class="small-input float-left margin-bottom">
+	  <label for="PKV1_SS">PKV1_SS:</label>
+	  <input type="number" class="form-control" id="PKV1_SS" ng-model="settings.data.settings.PKV1_SS">
+	</div>
+	<div class="small-input float-left margin-bottom">
+	  <label for="OV2_SS">OV2_SS:</label>
+	  <input type="number" class="form-control" id="OV2_SS" ng-model="settings.data.settings.OV2_SS">
+	</div>
+	<div class="small-input float-left margin-bottom">
+	  <label for="PKV2_SS">PKV2_SS:</label>
+	  <input type="number" class="form-control" id="PKV2_SS" ng-model="settings.data.settings.PKV2_SS">
+	</div>
+	<div class="small-input float-left margin-bottom">
+	  <label for="DISCH_P_SS">DISCH_P_SS:</label>
+	  <input type="number" class="form-control" id="DISCH_P_SS" ng-model="settings.data.settings.DISCH_P_SS">
+	</div>
+	<div class="small-input float-left margin-bottom">
+	  <label for="FLOW_SS">FLOW_SS:</label>
+	  <input type="number" class="form-control" id="FLOW_SS" ng-model="settings.data.settings.FLOW_SS">
+	</div>
+	<div class="small-input float-left margin-bottom">
+	  <label for="SUCT_P_SS">SUCT_P_SS:</label>
+	  <input type="number" class="form-control" id="SUCT_P_SS" ng-model="settings.data.settings.SUCT_P_SS">
+	</div>
+	<div class="small-input float-left margin-bottom">
+	  <label for="STR_DP_SS">STR_DP_SS:</label>
+	  <input type="number" class="form-control" id="STR_DP_SS" ng-model="settings.data.settings.STR_DP_SS">
+	</div>
+	<div class="small-input float-left margin-bottom">
+	  <label for="SEAL_L_SS">SEAL_L_SS:</label>
+	  <input type="number" class="form-control" id="SEAL_L_SS" ng-model="settings.data.settings.SEAL_L_SS">
+	</div>
+	<div class="small-input float-left margin-bottom">
+	  <label for="SEAL_P_SS">SEAL_P_SS:</label>
+	  <input type="number" class="form-control" id="SEAL_P_SS" ng-model="settings.data.settings.SEAL_P_SS">
+	</div>
+	<div class="small-input float-left margin-bottom">
+	  <label for="BEAR1_T_SS">BEAR1_T_SS:</label>
+	  <input type="number" class="form-control" id="BEAR1_T_SS" ng-model="settings.data.settings.BEAR1_T_SS">
+	</div>
+	<div class="small-input float-left margin-bottom">
+	  <label for="BEAR2_T_SS">BEAR2_T_SS:</label>
+	  <input type="number" class="form-control" id="BEAR2_T_SS" ng-model="settings.data.settings.BEAR2_T_SS">
+	</div>
+	<div class="small-input float-left margin-bottom">
+	  <label for="SPEED_SP">SPEED_SP:</label>
+	  <input type="number" class="form-control" id="SPEED_SP" ng-model="settings.data.settings.SPEED_SP">
+	</div>
+	<div class="small-input float-left margin-bottom">
+	  <label for="SPEED_MAX">SPEED_MAX:</label>
+	  <input type="number" class="form-control" id="SPEED_MAX" ng-model="settings.data.settings.SPEED_MAX">
+	</div>-->
+	
+	<div style="clear:both; margin-bottom:30px;"></div>
+		<div class="device-list-header">
+			<div class="float-left" style="font-size:30px;" ng-click="restoreSettings();"><b>Settings</b></div>
+		</div>
+		<span ng-repeat="(key,value) in lists.settings">
+			<div class="small-input float-left margin-bottom" ng-if="key!='endpoint'">
+				<label for="{{key}}">{{key}}:</label>
+				<input type="number" class="form-control" id="OV1_SS" ng-model="settings.data.settings[key]" value={{settings.data.settings[$index]}}>
+			</div>
+		</span>
+		
+	</span>
+	
+	<div style="clear:both;"></div>
+<!--
+	<div class="form-group">
+		<label for="update_rate">Global Update Rate:</label>
+		<select name="singleSelect2" id="singleSelect2" ng-model="settings.data.update_rate">
+			<option ng-repeat="option in update_rate_options" value="{{option}}">{{option}}</option>
+		</select>
+	</div>
+-->
+	<div class="form-group">
+		<label for="device_tag">Global Target API Endpoint:</label>
+		<input type="text" class="form-control" id="device_tag" ng-model="settings.data.endpoint">
+		<button type="button" class="btn btn-info margin-bottom margin-right margin-top" ng-click="getServerStatus()"><b>Check Target Server Status</b></button>
+		<b>{{server_status}}</b>
+	</div>
+	<div class="alert-box">
+		<div class="alert alert-success alert-dismissable" ng-if="alert.type=='success'">
+		  <a ng-href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		  <strong>{{alert.message.strong}}</strong> {{alert.message.text}}
+		</div>
+		<div class="alert alert-warning alert-dismissable" ng-if="alert.type=='warning'">
+		  <a ng-href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		  <strong>{{alert.message.strong}}</strong> {{alert.message.text}}
+		</div>
+		<div class="alert alert-danger alert-dismissable" ng-if="alert.type=='failed'">
+		  <a ng-href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		  <strong>{{alert.message.strong}}</strong> {{alert.message.text}}
+		</div>
+	</div>
+	<div>
+		<button type="button" class="btn btn-success add-button margin-bottom" ng-click="update()"><b>Update</b></button>
+		<button type="button" class="btn btn-warning add-button margin-bottom margin-right" ng-click="reset()"><b>Reset</b></button>
+	</div>
+</span>

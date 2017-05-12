@@ -68,7 +68,7 @@ angular.module('dsgaApp')
 				dv_value : null,
 				dv_status : '0xc0'
 			},
-			SV : {
+			AP : {
 				active : false,
 				dv_label : 'SV',
 				dv_num : null,
@@ -76,7 +76,7 @@ angular.module('dsgaApp')
 				dv_value : null,
 				dv_status : '0xc0'
 			},
-			TV : {
+			IR : {
 				active : false,
 				dv_label : 'TV',
 				dv_num : null,
@@ -84,7 +84,7 @@ angular.module('dsgaApp')
 				dv_value : null,
 				dv_status : '0xc0'
 			},
-			QV : {
+			SD : {
 				active : false,
 				dv_label : 'QV',
 				dv_num : null,
@@ -92,7 +92,7 @@ angular.module('dsgaApp')
 				dv_value : null,
 				dv_status : '0xc0'
 			},
-			DV : {
+			ED : {
 				active : false,
 				dv_label : 'DV',
 				dv_num : null,

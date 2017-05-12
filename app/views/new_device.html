@@ -35,7 +35,7 @@
 	<label for="update_rate">Update Rate:</label>
 	<select name="singleSelect2" id="singleSelect2" ng-model="dataModel.update_rate">
 		<option value="">---Please select---</option>
-		<option ng-repeat="option in lists.update_rate_options" value="{{option}}">{{option}}</option>
+		<option ng-repeat="option in lists.update_rate_options" value="{{option}}">{{option}} Seconds</option>
 	</select>
 </div>
 <!--
@@ -57,20 +57,71 @@
 
 <span>
 	<div class="var_list_container">
-		<h2> <b>Var List</b> </h2>
+		<h2> <b>Var</b> </h2>
 		<b>PV</b> <checkbox largest ng-model="dataModel.polling_info.PV.active" name="custom-name" ng-change="onChange('PV')" class="btn-default"></checkbox>
 		<b>AP</b> <checkbox largest ng-model="dataModel.polling_info.AP.active" name="custom-name" ng-change="onChange('AP')" class="btn-default"></checkbox>
 		<b>IR</b> <checkbox largest ng-model="dataModel.polling_info.IR.active" name="custom-name" ng-change="onChange('IR')" class="btn-default"></checkbox>
 		<b>SD</b> <checkbox largest ng-model="dataModel.polling_info.SD.active" name="custom-name" ng-change="onChange('SD')" class="btn-default"></checkbox>
 		<b>ED</b> <checkbox largest ng-model="dataModel.polling_info.ED.active" name="custom-name" ng-change="onChange('ED')" class="btn-default"></checkbox>
 	</div>
-	
 	<div class="single_var_element" id="PV-section" ng-if="dataModel.polling_info.PV.active">
 		<h2><b>PV</b></h2>
-		<!--<div class="small-input float-left">
-			<label for="dv_num">dv_num:</label>
-			<input type="text" class="form-control" id="dv_num" ng-model="dataModel.polling_info.PV.dv_num">
-		</div>-->
+	
+		<div class="small-input float-left">
+			<label for="dv_unit">Data Type:</label>
+			<select name="singleSelect" id="singleSelect" ng-model="dataModel.polling_info.PV.dv_unit">
+				<option value="">---Please select---</option>
+				<option ng-repeat="option in lists.type.PV" value="{{option}}">{{option}}</option>
+			</select>
+		</div>
+	</div>
+	<div class="single_var_element" id="AP-section" ng-if="dataModel.polling_info.AP.active">
+		<h2><b>PV</b></h2>
+	
+		<div class="small-input float-left">
+			<label for="dv_unit">Image Size:</label>
+			<select name="singleSelect" id="singleSelect" ng-model="dataModel.polling_info.AP.dv_unit">
+				<option value="">---Please select---</option>
+				<option ng-repeat="option in lists.type.AP" value="{{option}}">{{option}}</option>
+			</select>
+		</div>
+	</div>
+	<div class="single_var_element" id="IR-section" ng-if="dataModel.polling_info.IR.active">
+		<h2><b>IR</b></h2>
+	
+		<div class="small-input float-left">
+			<label for="dv_unit">Infra Red Video Size:</label>
+			<select name="singleSelect" id="singleSelect" ng-model="dataModel.polling_info.IR.dv_unit">
+				<option value="">---Please select---</option>
+				<option ng-repeat="option in lists.type.IR" value="{{option}}">{{option}}</option>
+			</select>
+		</div>
+	</div>
+	<div class="single_var_element" id="SD-section" ng-if="dataModel.polling_info.SD.active">
+		<h2><b>SD</b></h2>
+	
+		<div class="small-input float-left">
+			<label for="dv_unit">Data Type:</label>
+			<select name="singleSelect" id="singleSelect" ng-model="dataModel.polling_info.SD.dv_unit">
+				<option value="">---Please select---</option>
+				<option ng-repeat="option in lists.type.SD" value="{{option}}">{{option}}</option>
+			</select>
+		</div>
+	</div>
+	<div class="single_var_element" id="ED-section" ng-if="dataModel.polling_info.ED.active">
+		<h2><b>ED</b></h2>
+	
+		<div class="small-input float-left">
+			<label for="dv_unit">Data Type:</label>
+			<select name="singleSelect" id="singleSelect" ng-model="dataModel.polling_info.ED.dv_unit">
+				<option value="">---Please select---</option>
+				<option ng-repeat="option in lists.type.ED" value="{{option}}">{{option}}</option>
+			</select>
+		</div>
+	</div>
+<!--
+	<div class="single_var_element" id="PV-section" ng-if="dataModel.polling_info.PV.active">
+		<h2><b>PV</b></h2>
 	
 		<div class="small-input float-left">
 			<label for="dv_unit">dv_unit:</label>
@@ -99,10 +150,6 @@
 	
 	<div class="single_var_element" id="AP-section" ng-if="dataModel.polling_info.AP.active">
 		<h2><b>AP</b></h2>
-		<!--<div class="small-input float-left">
-			<label for="dv_num">dv_num:</label>
-			<input type="text" class="form-control" id="dv_num" ng-model="dataModel.polling_info.AP.dv_num">
-		</div>-->
 	
 		<div class="small-input float-left">
 			<label for="dv_unit">dv_unit:</label>
@@ -131,10 +178,6 @@
 	
 	<div class="single_var_element" id="IR-section" ng-if="dataModel.polling_info.IR.active">
 		<h2><b>IR</b></h2>
-		<!--<div class="small-input float-left">
-			<label for="dv_num">dv_num:</label>
-			<input type="text" class="form-control" id="dv_num" ng-model="dataModel.polling_info.IR.dv_num">
-		</div>-->
 	
 		<div class="small-input float-left">
 			<label for="dv_unit">dv_unit:</label>
@@ -163,10 +206,6 @@
 	
 	<div class="single_var_element" id="SD-section" ng-if="dataModel.polling_info.SD.active">
 		<h2><b>SD</b></h2>
-		<!--<div class="small-input float-left">
-			<label for="dv_num">dv_num:</label>
-			<input type="text" class="form-control" id="dv_num" ng-model="dataModel.polling_info.SD.dv_num">
-		</div>-->
 	
 		<div class="small-input float-left">
 			<label for="dv_unit">dv_unit:</label>
@@ -195,10 +234,6 @@
 	
 	<div class="single_var_element" id="DV-section" ng-if="dataModel.polling_info.ED.active">
 		<h2><b>ED</b></h2>
-		<!--<div class="small-input float-left">
-			<label for="dv_num">dv_num:</label>
-			<input type="text" class="form-control" id="dv_num" ng-model="dataModel.polling_info.DV.dv_num">
-		</div>-->
 	
 		<div class="small-input float-left">
 			<label for="dv_unit">dv_unit:</label>
@@ -224,6 +259,7 @@
 			</select>
 		</div>
 	</div>
+-->
 	
 	
 	<div style="clear:both; margin-bottom:30px;"></div>
